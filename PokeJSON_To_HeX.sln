@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeJSON_To_HeX", "PokeJSON_To_HeX\PokeJSON_To_HeX.csproj", "{5FF051CB-3CB0-4A83-8E45-4323E4A972FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FF051CB-3CB0-4A83-8E45-4323E4A972FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FF051CB-3CB0-4A83-8E45-4323E4A972FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FF051CB-3CB0-4A83-8E45-4323E4A972FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FF051CB-3CB0-4A83-8E45-4323E4A972FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96C6B0CD-8314-4344-843F-DBBB5DC0714A}
+	EndGlobalSection
+EndGlobal
