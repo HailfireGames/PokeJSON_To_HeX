@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Linq;
 
+
 namespace PokeJSON_To_HeX
 {
     class Program
@@ -15,7 +16,7 @@ namespace PokeJSON_To_HeX
         static string PK_HEXGen3UData = ".EncryptionConstant={0}\n";
 
         static int _Generation = 3, maxPerFile = 32 * 30, fileGenCount = 1;
-        static bool _orderByTotalStats = true, _findSpecific = false, _findAllTopNatures = true, _findAllOneFile = true;
+        static bool _orderByTotalStats = true, _findSpecific = false, _findAllTopNatures = true, _findAllOneFile = true, removeDupes = true;
         static string _natureToFind = "hardy";
 
         static void Main(string[] args)
@@ -141,10 +142,11 @@ namespace PokeJSON_To_HeX
         static List<PokemonItem> GeneratePokemon(string[] mons)
         {
             List<PokemonItem> pokemons = new List<PokemonItem>();
-
+          
             //Make Pokemon
             for (int i = 0; i < mons.Length; i++)
-            {              
+            {
+                int buffer = 0;
                 PokemonItem pi = new PokemonItem();
                 pi._stats = new PokeStats();
 
@@ -160,6 +162,12 @@ namespace PokeJSON_To_HeX
                     if (statSplit.Length < 2)
                         continue;
 
+                    if (statSplit[0].ToLower().Trim() == "frame")
+                    {
+                        buffer++;
+                        continue;
+                    }
+
                     if (statSplit[0].ToLower().Trim() == "nature")
                     {
                         statSplit[1] = ConvertNature(statSplit[1].ToLower().Trim()).ToString();
@@ -170,9 +178,18 @@ namespace PokeJSON_To_HeX
                         statSplit[1] = pidInt.ToString();
                     }
 
-                    pi._stats[j] = statSplit[1].Trim();
+                    pi._stats[j-buffer] = statSplit[1].Trim();
                 }
-                pokemons.Add(pi);
+
+                if(removeDupes)
+                {
+                    if (!pokemons.Any(x => x._stats._PID == pi._stats._PID))
+                    {
+                        pokemons.Add(pi);
+                    }
+                }
+                else
+                    pokemons.Add(pi);
             }
 
             return pokemons;
